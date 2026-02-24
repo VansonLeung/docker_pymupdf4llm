@@ -1,0 +1,139 @@
+identity:
+  name: "pymupdf4llm"
+  author: "vansonleung"
+  label:
+    en_US: "PDF to Markdown/Text/HTML"
+    zh_Hans: "PDF 轉 Markdown/Text/HTML"
+    pt_BR: "PDF para Markdown/Text/HTML"
+    ja_JP: "PDFをMarkdown/Text/HTMLへ"
+description:
+  human:
+    en_US: "Convert a PDF into full + page arrays for Markdown, Text and HTML JSON outputs."
+    zh_Hans: "將 PDF 轉換為 Markdown、Text、HTML（完整與分頁陣列）JSON。"
+    pt_BR: "Converte PDF para saídas JSON com Markdown, Text e HTML completos e por página."
+    ja_JP: "PDFをMarkdown/Text/HTMLの全文・ページ配列JSONに変換します。"
+  llm: "Input one PDF (file/path/url/base64) and return JSON with markdown.full/pages, text.full/pages, html.full/pages."
+parameters:
+  - name: pdf_file
+    type: file
+    required: false
+    label:
+      en_US: PDF File
+      zh_Hans: PDF 檔案
+      pt_BR: Arquivo PDF
+      ja_JP: PDFファイル
+    human_description:
+      en_US: "Upload a PDF file directly."
+      zh_Hans: "直接上傳 PDF 檔案。"
+      pt_BR: "Envie um arquivo PDF diretamente."
+      ja_JP: "PDFファイルを直接アップロードします。"
+    llm_description: "Optional. Preferred input."
+    form: llm
+  - name: pdf_path
+    type: string
+    required: false
+    label:
+      en_US: PDF Local Path
+      zh_Hans: PDF 本機路徑
+      pt_BR: Caminho local do PDF
+      ja_JP: PDFローカルパス
+    human_description:
+      en_US: "Alternative input: local file path on plugin runtime."
+      zh_Hans: "替代輸入：插件執行環境中的本機檔案路徑。"
+      pt_BR: "Entrada alternativa: caminho local no runtime do plugin."
+      ja_JP: "代替入力：プラグイン実行環境上のローカルパス。"
+    llm_description: "Optional alternative input."
+    form: llm
+  - name: pdf_url
+    type: string
+    required: false
+    label:
+      en_US: PDF URL
+      zh_Hans: PDF URL
+      pt_BR: URL do PDF
+      ja_JP: PDF URL
+    human_description:
+      en_US: "Alternative input: downloadable HTTP/HTTPS PDF URL."
+      zh_Hans: "替代輸入：可下載的 HTTP/HTTPS PDF 連結。"
+      pt_BR: "Entrada alternativa: URL HTTP/HTTPS de PDF para download."
+      ja_JP: "代替入力：ダウンロード可能なHTTP/HTTPS PDF URL。"
+    llm_description: "Optional alternative input."
+    form: llm
+  - name: pdf_base64
+    type: string
+    required: false
+    label:
+      en_US: PDF Base64
+      zh_Hans: PDF Base64
+      pt_BR: PDF em Base64
+      ja_JP: PDF Base64
+    human_description:
+      en_US: "Alternative input: base64-encoded PDF content."
+      zh_Hans: "替代輸入：Base64 編碼的 PDF 內容。"
+      pt_BR: "Entrada alternativa: conteúdo PDF codificado em base64."
+      ja_JP: "代替入力：Base64エンコードされたPDFデータ。"
+    llm_description: "Optional alternative input."
+    form: llm
+  - name: dpi
+    type: number
+    required: false
+    label:
+      en_US: DPI
+      zh_Hans: DPI
+      pt_BR: DPI
+      ja_JP: DPI
+    human_description:
+      en_US: "Image/text processing DPI for markdown extraction. Default 150."
+      zh_Hans: "Markdown 擷取使用的 DPI，預設 150。"
+      pt_BR: "DPI para extração markdown. Padrão 150."
+      ja_JP: "Markdown抽出に使うDPI。既定150。"
+    llm_description: "Optional integer-like number, defaults to 150."
+    form: llm
+  - name: extract_images
+    type: boolean
+    required: false
+    label:
+      en_US: Extract Images to files[]
+      zh_Hans: 擷取圖片到 files[]
+      pt_BR: Extrair imagens para files[]
+      ja_JP: 画像をfiles[]へ出力
+    human_description:
+      en_US: "If true, extract rendered images from PDF and output them into Dify files[]."
+      zh_Hans: "若為 true，將 PDF 圖片擷取後輸出到 Dify 的 files[]。"
+      pt_BR: "Se true, extrai imagens do PDF e envia para files[] no Dify."
+      ja_JP: "true の場合、PDF画像を抽出して Dify の files[] に返します。"
+    llm_description: "Optional boolean, default false."
+    form: llm
+  - name: image_format
+    type: string
+    required: false
+    label:
+      en_US: Image Format
+      zh_Hans: 圖片格式
+      pt_BR: Formato da imagem
+      ja_JP: 画像形式
+    human_description:
+      en_US: "Image format for extracted images, e.g. png or jpg. Default png."
+      zh_Hans: "擷取圖片格式，例如 png 或 jpg。預設 png。"
+      pt_BR: "Formato das imagens extraídas, ex.: png ou jpg. Padrão png."
+      ja_JP: "抽出画像の形式（png / jpg）。既定は png。"
+    llm_description: "Optional, default png."
+    form: llm
+  - name: max_images
+    type: number
+    required: false
+    label:
+      en_US: Max Output Images
+      zh_Hans: 最大輸出圖片數
+      pt_BR: Máximo de imagens
+      ja_JP: 最大画像数
+    human_description:
+      en_US: "Maximum number of extracted images to emit to files[]. Default 30."
+      zh_Hans: "輸出到 files[] 的最大圖片數，預設 30。"
+      pt_BR: "Número máximo de imagens para files[]. Padrão 30."
+      ja_JP: "files[] に出力する最大画像数。既定 30。"
+    llm_description: "Optional integer-like number, default 30."
+    form: llm
+extra:
+  python:
+    source: tools/pymupdf4llm.py
