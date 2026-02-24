@@ -1,0 +1,42 @@
+services:
+  pymupdf4llm-api-amd64:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.amd64
+    image: pymupdf4llm-api:amd64
+    platform: linux/amd64
+    ports:
+      - "8000:8000"
+
+  pymupdf4llm-api-arm64:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.arm64
+    image: pymupdf4llm-api:arm64
+    platform: linux/arm64
+    ports:
+      - "8001:8000"
+
+  pymupdf4llm-api-layout-amd64:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.amd64
+      args:
+        PYTHON_VERSION: "3.12"
+        ENABLE_LAYOUT: "true"
+    image: pymupdf4llm-api:layout-amd64
+    platform: linux/amd64
+    ports:
+      - "8002:8000"
+
+  pymupdf4llm-api-layout-arm64:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.arm64
+      args:
+        PYTHON_VERSION: "3.12"
+        ENABLE_LAYOUT: "true"
+    image: pymupdf4llm-api:layout-arm64
+    platform: linux/arm64
+    ports:
+      - "8003:8000"

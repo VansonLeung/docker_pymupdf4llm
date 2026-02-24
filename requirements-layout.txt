@@ -1,0 +1,4 @@
+# Optional dependencies for PyMuPDF-Layout mode
+# Recommended with Python 3.12 for broad wheel compatibility.
+pymupdf-layout
+onnxruntime
